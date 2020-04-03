@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <title>MarkDownエディターのテスト</title>
+</head>
+<body>
+  <h2>Mark Downエディタの例</h2>
+  <div id="app">
+    <textarea v-model="input" id="" cols="30" rows="10"></textarea>
+    <div v-html="convertMarkdown"></div>
+  </div>
+  <script>
+    new Vue({
+    el: '#app',
+    data: {
+      input: ''
+    },
+    computed: {
+      //inputが変わったら、convertMarkdownを算出する
+      convertMarkdown: function(){
+        return marked(this.input);
+      }
+    }
+  })
+
+  </script>
+</body>
+</html>

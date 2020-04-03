@@ -1,0 +1,37 @@
+window.onload = function(){
+  //グラフに使うデータ
+  var orgdata = [
+    ['種類','個数'],
+    ['幕の内', 3 ], ['カルビ弁当', 4 ],
+    ['オムライス', 5 ], ['冷やし中華', 1 ],
+    ['ビビンバ丼', 3 ], ['ざるそば', 1 ]
+  ];
+
+  google.charts.load('current', {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawBasic);
+
+  //グラフを表示する関数
+  function drawBasic(){
+    var data = google.visualization.arrayToDataTable(orgdata);
+    var options = { title: '好きなランチ', "is3D": true };
+    var chart = new google.visualization.PieChart(
+      document.getElementById('chart_div')
+    );
+    chart.draw(data, options);
+  }
+
+  new Vue({
+    el: '#app',
+    data: {
+      dataArray: orgdata
+    },
+    methods: {
+      addOne: function(index) {
+        var obj = this.dataArray[val];
+        obj[1]++;
+        this.dataArray.splice(index, 1, obj);
+        drawBasic();
+      }
+    }
+  });
+};

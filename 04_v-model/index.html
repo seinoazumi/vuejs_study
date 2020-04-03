@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <title>v-modelのテスト</title>
+</head>
+<body>
+  <h2>入力した文字列を表示する例</h2>
+		<div id="app1">
+			<input v-model="myName" placeholder="お名前">
+			<p>私は、{{ myName }} です。</p>
+    </div>
+  
+  <h2>入力した文章と文字数を表示する例</h2>
+    <div id="app2">
+      <textarea v-model="myText" cols="30" rows="10"></textarea>
+      <p>文章は、「{{ myText }}」</p>
+      <p>文字数は、{{ myText.length }}文字です</p>
+    </div>
+
+  <h2>チェックボックスのON/OFFを調べる例</h2>
+    <div id="app3">
+      <label>
+        <input type="checkbox" v-model="myCheck">
+        チェックボックスは、{{ myCheck }}
+      </label>
+    </div>
+
+  <h2>複数のチェックボックスのON/OFFを調べる例</h2>
+    <div id="app4">
+      <label>
+        <input type="checkbox" value="red" v-model="myChecks">
+        赤
+      </label><br>
+      <label>
+        <input type="checkbox" value="blue" v-model="myChecks">
+        緑
+      </label><br>
+      <label>
+        <input type="checkbox" value="green" v-model="myChecks">
+        青
+      </label><br>
+      <p>選択したのは、{{ myChecks }}</p>
+    </div>
+
+  <h2>同意にチェックを入れたら送信ボタンが有効になる例</h2>
+   <div id="app5">
+     <label>
+       <input type="checkbox" v-model="myAgree">
+       同意します
+     </label>
+     <button v-bind:disabled="myAgree==false">
+      送信
+     </button>
+   </div>
+
+  <h2>選択したラジオボタンを表示する例</h2>
+  <div id="app6">
+    <label>
+      <input type="radio" value="red" v-model="picked">
+      赤
+    </label><br>
+    <label>
+      <input type="radio" value="blue" v-model="picked">
+      緑
+    </label><br>
+    <label>
+      <input type="radio" value="green" v-model="picked">
+      青
+    </label><br>
+    <p>{{ picked }}を選択中</p>
+  </div>
+
+  <h2>画像の表示をラジオボタンで切り替える例</h2>
+  <div id="app7">
+    <label>
+      <input type="radio" value="face1.png" v-model="fileName">
+      face1
+    </label>
+    <label>
+      <input type="radio" value="face2.png" v-model="fileName">
+      face2
+    </label>
+    <p>{{ fileName }}を選択中</p>
+    <img v-bind:src="fileName">
+  </div>
+
+  <h2>文字列が洗濯した色に変わる例</h2>
+  <div id="app8">
+    <select v-model="myColor">
+      <option disabled value="">色を選んでください</option>
+      <option>red</option>
+      <option>green</option>
+      <option>blue</option>
+      <option>orange</option>
+      <option>brown</option>
+    </select>
+    <p v-bind:style="{ color: myColor }">選んだのは、{{ myColor }}です。</p>
+  </div>
+
+  <h2>複数の選択を配列にする例</h2>
+  <div id="app9">
+    <select v-model="myColor" multiple style="width: 150px">
+      option>red</option>
+      <option>green</option>
+      <option>blue</option>
+      <option>orange</option>
+      <option>brown</option>
+    </select>
+    <p>選択したのは、{{ myColor }}です。</p>
+  </div>
+
+  <h2>全部書き終わってから入力する例</h2>
+  <div id="app10">
+    <input v-model.lazy="myText">
+    <p>入力後に表示「{{ myText }}」</p>
+  </div>
+
+  <h2>入力を自動的に数値に変換する例</h2>
+  <div id="app11">
+    <input v-model.number="myNumber" type="number">
+    <p>100を足して表示{{ 100 + myNumber }}</p>
+  </div>
+
+  <h2>前後の空白を自動的にトリムする例</h2>
+  <div id="app12">
+    <input v-model.trim="myText">
+    <p>前後の空白を削除「{{ myText }}」</p>
+  </div>
+</body>
+</html>

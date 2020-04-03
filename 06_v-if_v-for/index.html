@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+  <title>v-ifとv-forのテスト</title>
+</head>
+<body>
+  <h2>trueの時だけ表示する例</h2>
+  <div id="app1">
+    <label>
+      <input type="checkbox" v-model="myVisible">表示する
+    </label>
+    <p v-if="myVisible">チェックボックスはON</p>
+  </div>
+
+  <h2>trueとfalseで表示を切り替える例</h2>
+  <div id="app2">
+    <label>
+      <input type="checkbox" v-model="myVisible">表示する
+      </label>
+      <p v-if="myVisible">チェックボックスはON</p>
+      <p v-else="myVisible">チェックボックスはOFF</p>
+  </div>
+
+  <h2>クリックしたら「いいね」ボタンが消える例</h2>
+  <div id="app3">
+    <button v-if="isShow" v-on:click="like">いいね</button>
+  </div>
+
+  <h2>配列データをリストで表示する例</h2>
+  <div id="app4">
+    <ul>
+      <li v-for="item in myArray">{{ item }}</li>
+    </ul>
+  </div>
+
+  <h2>オブジェクトの配列データをリストで表示する例</h2>
+  <div id="app5">
+    <ul>
+      <li v-for="item in objArray">{{ item.name }} ¥{{ item.price }}</li>
+    </ul>
+  </div>
+
+  <h2>1*5 ~ 10*5 を繰り返し表示する例</h2>
+  <div id="app6">
+    <ul>
+      <li v-for="n in 10">{{ n }} x 5 = {{ n * 5 }}</li>
+    </ul>
+  </div>
+
+  <h2>配列データを番号付きリストで表示する例</h2>
+  <div id="app7">
+    <ul>
+      <li v-for="(item, index) in myArray">{{ index }} : {{ item }}</li>
+    </ul>
+  </div>
+
+  <h2>配列データをテーブルで表示する例</h2>
+  <div id="app8">
+    <h3>注目されている言語ランキング</h3>
+    <table>
+      <thead>
+        <!-- テーブルデータの繰り返し -->
+        <th v-for="cell in header">{{ cell }}</th>
+      </thead>
+      <tbody>
+        <!-- １行の繰り返し -->
+        <tr v-for="row in ranking">
+          <!-- １セルのデータの繰り返し -->
+          <td v-for="cell in row">{{ cell }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+
+  <h2>ボタンでリストの追加・削除を行う例</h2>
+  <div id="app9">
+    <ul>
+      <li v-for="item in myArray">{{ item }}</li>
+    </ul>
+    <button v-on:click="addLast">末尾に追加</button><br>
+    <button v-on:click="addObj(3)">4つ目に追加</button><br>
+    <button v-on:click="changeObj(0)">1つ目を変更</button><br>
+    <button v-on:click="deleteObj(1)">2つ目を削除</button><br>
+  </div>
+
+  <h2>ソートする例</h2>
+  <div id="app10">
+    <ul>
+      <li v-for="item in myArray">{{ item }}</li>
+    </ul>
+    <button v-on:click="sortData(myArray)">
+      ソートする
+    </button>
+  </div>
+
+  <h2>偶数だけ表示する例</h2>
+  <div id="app11">
+    <ul>
+      <li v-for="item in myArray" v-if="item % 2 == 0">{{ item }}</li>
+    </ul>
+  </div>
+
+  <h2>ボタンをクリックしたら偶数だけ表示する例</h2>
+  <div id="app12">
+    <ul>
+      <li v-for="item in myArray">{{ item }}</li>
+    </ul>
+    <button v-on:click="evenData()">偶数だけにする</button>
+  </div>
+
+</body>
+</html>

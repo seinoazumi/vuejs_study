@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <title>v-onのサンプル</title>
+</head>
+
+<body>
+  <h2>クリックしたら、１増やす例</h2>
+  <div id="app1">
+    <p>{{ count }}</p>
+    <button v-on:click="countUp">１増やす</button>
+  </div>
+
+  <h2>クリックしたら、2回目は押せなくなる「いいね」ボタンの例</h2>
+  <div id="app2">
+    <button value="いいね" v-bind:disabled="isClick" v-on:click="oneClick">いいね</button>
+  </div>
+
+  <h2>クリックしたら、値をいろいろ増やす例</h2>
+  <div id="app3">
+    <p>{{ count }}</p>
+    <button v-on:click="countUP(3)">３増やす</button>
+    <button v-on:click="countUP(10)">10増やす</button>
+    <button v-on:click="countUP(100)">100増やす</button>
+  </div>
+
+  <h2>[Enter]キーをクリックしたら、アラートを表示する例</h2>
+  <div id="app4">
+    <input v-on:keyup.enter="showAlert" v-model="myText">
+    <p>{{ myText }}</p>
+  </div>
+
+  <h2>[Shift]+[Enter]キーをクリックしたら、アラートを表示する例</h2>
+  <div id="app5">
+    <input v-on:keyup.enter.shift="showAlert" v-model="myText">
+    <p>{{ myText }}</p>
+  </div>
+    
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-bindで属性を指定する</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>画像を指定する例</h2>
+  <div id="app1">
+    <img src="face1.png" alt="">直接指定</img><br>
+    <img v-bind:src="fileName" alt="">v-bindで指定</img>
+  </div>
+
+  <h2>リンク先を指定する例</h2>
+  <div id="app2">
+    <a href="https://www.ymori.com">リンクを直接指定</a>
+    <a v-bind:href="myUrl">リンクをv-bindで指定</a>
+  </div>
+
+  <h2>alignを指定する例</h2>
+  <div id="app3">
+    <p align="right">右寄せを直接指定</p>
+    <p v-bind:align="myAlign">右寄せをv-bindで指定</p>
+  </div>
+
+  <h2>インラインスタイルを指定する</h2>
+  <div id="app4">
+    <p style="color: #e80">文字色を直接指定</p>
+    <p v-bind:style="{ color: myColor }">文字色をv-bindで指定</p>
+    <p style="font-size: 200%">フォントを直接指定</p>
+    <p v-bind:style="{ fontSize: mySize }">フォントをv-bindで指定</p>
+    <p style="background-color: aqua">背景色を直接指定</p>
+    <p v-bind:style="{ backgroundColor: myBackColor }">背景色をv-bindで指定</p>
+  </div>
+
+  <h2>クラスを指定する例</h2>
+  <div id="app5">
+    <p class="strike-through">直接クラスを指定</p>
+    <p v-bind:class="myClass">v-bindでクラスを指定</p>
+    <p v-bind:class="[myClass, darkClass]">v-bindで複数のクラスを指定</p>
+    <p v-bind:class="{ 'strike-through': isON }">データでクラスをON/OFF</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app1',
+      data: {
+        fileName: 'face1.png'
+      }
+    })
+
+    new Vue({
+      el: '#app2',
+      data: {
+        myUrl: 'https://www.ymori.com'
+      }
+    })
+
+    new Vue({
+      el: '#app3',
+      data: {
+        myAlign: 'right'
+      }
+    })
+
+    new Vue({
+      el: '#app4',
+      data: {
+        myColor: '#e08800',
+        mySize: '200%',
+        myBackColor: 'aqua'
+      }
+    })
+
+    new Vue({
+      el: '#app5',
+      data: {
+        myClass: 'strike-through',
+        darkClass: 'dark',
+        isON: true
+      }
+    })
+  </script>
+</body>
+</html>

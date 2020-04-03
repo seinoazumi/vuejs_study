@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Watchオプションのテスト</title>
+</head>
+<body>
+
+  <h2>禁止文字が入力されたらアラートを出す</h2>
+  <div id="app1">
+    <p>「{{ forbiddenText }}」は禁止文字です。</p>
+    <textarea v-model="inputText" cols="30" rows="10"></textarea>
+  </div>
+
+  <h2>残り秒数が0になったら、アラートを出す</h2>
+  <div id="app2"><!--実際のスクリプトはページ下方に記載-->
+    <button onclick="startTimer()">START</button>
+  </div>
+
+  <h2>残り秒数と、アラートを出す</h2>
+  <div id="app3">
+    <p>あと、{{ restSec }}秒</p>
+    <button v-on:click="startTimer">START</button>
+  </div>
+  
+  <script>
+    function startTimer(){
+    //残り5秒
+    this.restSec = 5;
+    //タイマースタート
+    //1000msごとに、countDown()を実行
+    this.timerObj = setInterval(() => { countDown()}, 1000)
+  };
+
+  function countDown() {
+    //1秒減らす
+    this.restSec--;
+    // 0秒以下になったらアラート&タイマー停止
+    if (this.restSec <= 0) {
+      alert("制限時間です");
+      clearInterval(this.timerObj);
+    }
+  }
+  </script>
+</body>
+</html>

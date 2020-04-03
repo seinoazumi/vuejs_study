@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <title>Transitionテスト</title>
+</head>
+<body>
+  <h2>Transitionの例</h2>
+  <div id="app1">
+    <label for="">
+      <input type="checkbox" v-model="isOk">切り替える
+    </label>
+    <transition>
+      <p v-if="isOk">表示・非表示のアニメ</p>
+    </transition>
+  </div>
+  
+  <h2>Transition-groupの例</h2>
+  <div id="app2">
+    <transition-group>
+      <li v-for="item in dataArray" v-bind:key="item">{{ item }}</li>
+    </transition-group>
+    <label>
+      <input v-model="addItem" placeholder="追加するリスト">
+    </label>
+    <br>
+    <button v-on:click="addList">追加</button><br>
+    <button v-on:click="removeLast">最後の一つを削除</button>
+  </div>
+
+  <h2>リストの順が入れ替わるアニメーションの例</h2>
+  <button onclick="shuffleData()">シャッフル</button>
+
+  <h2>Transition-groupの例</h2>
+  <div id="app4">
+    <transition-group>
+      <li v-for="item in dataArray" v-bind:key="item">{{ item }}</li>
+    </transition-group>
+   
+    <button v-on:click="sortData">ソートする</button><br>
+    <button v-on:click="shuffleData">シャッフルする</button>
+  </div>
+  <script>
+    var dataArray = ['one', 'two', 'three', 'four', 'five'];
+    function shuffleData(){
+      //まず、一時的な空の配列を用意
+      var buffer = [],
+      len = this.dataArray.length;
+
+      //元の配列を減らしながら繰り返す。iはその時点での個数
+      for(var i=len; len>0; len--) {
+        //rは、その時点での個数内でランダム
+        var r = Math.floor( Math.random() * len );
+        //元の配列から一つずつ一時的な配列に追加
+        buffer.push( this.dataArray[r] );
+        //元の配列からpushした要素と同じ要素を削除
+        this.dataArray.splice(r, 1);
+      }
+      //一時的な配列を元の配列に入れる
+      this.dataArray = buffer;
+      //シャッフルの確認
+      alert(dataArray);
+    }
+  </script>
+</body>
+</html>

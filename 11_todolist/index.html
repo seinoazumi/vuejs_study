@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <title>To Doリストのテスト</title>
+</head>
+<body>
+  <h2>ToDoリスト</h2>
+  <div id="app">
+    <div v-for="todo in todos">
+      <label>
+        <input type="checkbox" v-model="todo.done">
+        <span v-bind:class="{ donestyle:todo.done }">{{ todo.text}}</span>
+      </label>
+    </div>
+
+    <input type="text" v-model.trim="addText" v-on:keyup.enter="addToDo" placeholder="すること">
+    <p><button v-on:click="cleanToDo">処理済みを削除</button></p>
+    <p>{{ remaining }} / {{ todos.length }}件処理</p>
+  </div>
+</body>
+</html>

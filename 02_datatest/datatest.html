@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>使えるデータの種類</title>
+</head>
+<body>
+  <h2>色々な型のデータを表示する例</h2>
+  <div id="app">
+    <p>{{ myNumber }}</p>
+    <p>{{ myText }}</p>
+    <p>{{ myBool }}</p>
+  </div>
+
+  <h2>JavaScriptの式を使って表示する例</h2>
+  <div id="app2">
+    <p>{{ myPrice * 1.1 }}</p>
+    <p>{{ "こんにちは" + myName + "さん" }}</p>
+    <p>{{ myName.substr(0,1) }}</p>
+  </div>
+
+  <h2>配列の値を表示する例</h2>
+  <div id="app3">
+    <p>{{ myArray }}</p>
+    <p>{{ myArray[0] }}</p>
+  </div>
+
+  <h2>オブジェクトデータを表示する例</h2>
+  <div id="app4">
+    <p>{{ myTea }}</p>
+    <p>{{ myTea[0] }}</p>
+  </div>
+
+  <h2>JavaScriptで用意したデータを表示する例</h2>
+  <div id="app5">
+    <p>{{ teaList }}</p>
+    <p>{{ teaList[1].name }} ¥{{ teaList[1].price }}</p>
+  </div>
+
+  <h2>オブジェクトデータの中身を確認する例</h2>
+  <div id="app6">
+    {{ $data }}
+    <hr>
+    <li v-for="(item, key) in $data">{{ key }} : {{ item }}</li>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        myNumber: 12345,
+        myText: 'hello',
+        myBool: true
+      }
+    })
+
+    new Vue({
+      el: '#app2',
+      data: {
+        myPrice: 500,
+        myName: '桃太郎'
+      }
+    })
+
+    new Vue({
+      el: '#app3',
+      data: {
+        myArray:['ダージリン','アールグレイ','セイロン']
+      }
+    })
+
+    new Vue({
+      el: '#app4',
+      data: {
+        myTea:{ name: 'ダージリン', price: 600 }
+      }
+    })
+
+    var teaList = [
+      { name: 'ダージリン', price: 600 },
+      { name: 'アールグレイ', price: 550 },
+      { name: 'セイロン', price: 500 },
+    ]
+
+    new Vue ({
+      el: '#app5',
+      data: {
+        teaList: teaList
+      }
+    })
+
+    new Vue ({
+      el: '#app6',
+      data: {
+        myText: 'hello',
+        myNumber: 12345,
+        myBool: true,
+        myArray: [1,2,3,4,5]
+      }
+    })
+
+  </script>
+  
+</body>
+</html>
