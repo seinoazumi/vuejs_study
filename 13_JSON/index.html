@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>JSONファイルの読み込み</title>
+</head>
+<body>
+  <h2>JavaScriptでJSONをコンソールに読み込む</h2>
+  <input type="file" id="loader">
+
+  <h2>JSONファイルをVue.jsで読み込む</h2>
+  <div id="app1">
+    <input type="file" v-on:change="onFileChange">
+    <p>読み込みデータ＝{{ loadData }}</p>
+  </div>
+
+  <h2>JSONデータを読み込み、コンポーネントで並べる</h2>
+  <div id="app2">
+    <transition-group>
+      <div v-for="item in dataArray" v-bind:key="item.title">
+        <my-product v-bind:object="item">
+      </div>
+    </transition-group>
+    <button v-on:click="sortData">ソート</button>
+    <button v-on:click="shuffleData">シャッフル</button>
+    <input type="file" v-on:change="loadData">
+  </div>
+</body>
+</html>
