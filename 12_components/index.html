@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>componentsのテスト</title>
+</head>
+<body>
+  <h2>コンポーネントを使って表示する</h2>
+  <div id="app1">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+  </div>
+
+  <h2>カウンター付きのコンポーネント</h2>
+  <div id="app2">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+  </div>
+  
+  <h2>コンポーネントにpropsで値を渡す</h2>
+  <div id="app3">
+    <my-component my-name="桃太郎"></my-component>
+    <my-component my-name="浦島太郎"></my-component>
+    <my-component></my-component>
+  </div>
+
+  <h2>v-forでコンポーネントを繰り返す</h2>
+  <div id="app4">
+    <my-component v-for="(item, index) in myArray" v-bind:my-name="item" v-bind:key="index"></my-component>
+  </div>
+</body>
+</html>
