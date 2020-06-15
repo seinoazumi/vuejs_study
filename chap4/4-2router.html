@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Spa サンプルアプリ</title>
+</head>
+<body>
+  <div id="app">
+    <router-link to="/top">トップページ</router-link>
+    <router-link :to="{ name: 'user', params: { userID: 123 }}">ユーザー詳細ページ</router-link>
+    <router-view></router-view>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1"></script>
+
+    <script>
+      var router = new VueRouter({
+        routes: [
+          {
+            path: '/top',
+            component: {
+              template: '<div>トップページです</div>'
+            }
+          },
+          {
+            path: '/user/:userId',
+            name: 'user',
+            component: {
+              template: '<div>ユーザーIDは{{ $route.params.userID }}です</div>'
+            }
+          },
+        ]
+      })
+
+      var app = new Vue({
+        router: router
+      }).$mount('#app')
+    </script>
+  </div>
+</body>
+</html>
