@@ -118,6 +118,10 @@
       { id: 8, title: '商品8', price: 20, qty: 1, image: './images/cart/thumbnail_08.jpg' },
     ];
 
+    Vue.filter('formatCurrency', function(value){
+      return '￥' + String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    });
+
     var vm = new Vue({
       el: '#app',
       data: {
