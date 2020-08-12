@@ -132,6 +132,27 @@
           });
           return total;
         }
+      },
+      methods: {
+        addToCart(itemToAdd) {
+          let existence = false;
+
+          this.cartItems.forEach(item => {
+            if (item.id === itemToAdd.id){
+              existence = true;
+              item.qty += Number(itemToAdd.qty);
+            }
+          });
+
+          if (existence === false) {
+            this.cartItems.push(Vue.util.extend({}, itemToAdd));
+          }
+
+          itemToAdd.qty = 1;
+        },
+        remove(index) {
+          this.cartItems.splice(index, 1)
+        }
       }
     })
   </script>
