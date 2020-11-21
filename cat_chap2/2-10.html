@@ -59,6 +59,12 @@
           // this.$set(更新するデータ, インデックス or キー, 新しい値)
           this.$set(this.list, 0, {id: 1, name: "キングスライム", hp: 600})
         }
+      },
+      created: function(){
+        // 全ての要素にactiveプロパティを追加したい
+        this.list.forEach(function(item){
+          this.$set(item, 'active', false)
+        }, this)
       }
     })
   </script>
