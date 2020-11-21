@@ -21,6 +21,9 @@
           <button v-on:click="doRemove(index)">モンスターを削除</button>
       </li>
     </ul>
+    <div>
+      <button @click="changeList">リストの値を更新</button>
+    </div>
   </div>
   <script>
     var list = [
@@ -51,6 +54,10 @@
         doRemove: function(index){
           // 受け取ったindexの位置から１つ要素を削除
           this.list.splice(index, 1)
+        },
+        changeList: function(){
+          // this.$set(更新するデータ, インデックス or キー, 新しい値)
+          this.$set(this.list, 0, {id: 1, name: "キングスライム", hp: 600})
         }
       }
     })
