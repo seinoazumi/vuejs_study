@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="message">
+    <p>{{ message }}</p>
+
+    <textarea v-model="message"></textarea>
+    <pre>{{ message }}</pre>
+
+    <div>
+      <label>
+        <input type="checkbox" v-model="val"> {{ val }}
+      </label>
+
+      <label>
+        <input type="checkbox" v-model="val" true-value="yes" false-value="no"> {{ val }}
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <input type="checkbox" v-model="values" value="Aです"> A
+      </label>
+      <label>
+        <input type="checkbox" v-model="values" value="Bです"> B
+      </label>
+      <label>
+        <input type="checkbox" v-model="values" value="Cです"> C
+      </label>
+      <p>{{ values }}</p>
+    </div>
+
+    <div>
+      <label>
+        <input type="radio" v-model="radioValue" value="Aです"> A
+      </label>
+      <label>
+        <input type="radio" v-model="radioValue" value="Bです"> B
+      </label>
+      <label>
+        <input type="radio" v-model="radioValue" value="Cです"> C
+      </label>
+      <p>{{ radioValue }}</p>
+    </div>
+
+    <div>
+      <select v-model="selectValue">
+        <option disabled="disabled">選択してください</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+      </select>
+      {{ selectValue }}
+    </div>
+
+    <div>
+      <select v-model="selectValues" multiple>
+        <option disabled="disabled">選択してください</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+      </select>
+      {{ selectValues }}
+    </div>
+
+    <input type="file" @change="handleChange">
+    <div v-if="preview">
+      <img v-bind:src="preview">
+    </div>
+
+    <input type="range" v-model.number="rangeValue">{{ rangeValue }}
+
+    <div>
+      <input type="text" v-model.number="price">{{ price }}
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'hello!',
+        val: true,
+        values: [],
+        radioValue: '',
+        selectValue: '',
+        selectValues: [],
+        preview: '',
+        rangeValue: 50,
+        price: 0
+      },
+      methods: {
+        handleChange: function(event){
+          var file = event.target.files[0]
+          if (file && file.type.match(/^image\/(png|jpeg|jpg)$/)) {
+            this.preview = window.URL.createObjectURL(file)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
