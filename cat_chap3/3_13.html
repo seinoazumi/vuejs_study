@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input :value="message" @input="handleInput">
+    <div @click.right="handler">example</div>
+    <!-- ↓右クリックしたときにメニューが出ない -->
+    <div @click.right.prevent="handler">example</div>
+    <div @click="handler('div1')">
+      div1
+      <a href="#top" @click.stop="handler('div2')">div2</a>
+      <!-- ↑.stopがないと、コンソールには、div2, div1と出てくるぉぉk -->
+    </div>
+
+    <div @click="handler('div1')">
+      div1 prevent
+      <a href="#top" @click.prevent="handler('div2')">div2 prevent</a>
+      <!-- ↑.stopがないと、コンソールには、div2, div1と出てくる -->
+    </div>
+
+    <my-component @click.native="handler">
+      イベント呼び出し
+    </my-component>
+
+    <my-component @click="handler">
+      こちらは呼び出されない
+    </my-component>
+
+    <input v-on:keydown.13="handler">
+    <input v-on:keydown.enter="handler">
+    <input v-on:keydown.up.down.left.right="handler">
+
+    <button @click.shift="handler">shiftと同時に押すと動作します</button>
+  </div>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue.js',
+    },
+    components: {
+      myComponent: "my-component" // これは動作しない
+    },
+    methods: {
+      handleInput: function(event){
+        // 代入前に行う処理
+        console.log('インプットされました')
+        this.message = event.target.value
+      },
+      handler: function(comment){
+        console.log(comment)
+      }
+    }
+  })
+</script>
+</body>
+</html>
