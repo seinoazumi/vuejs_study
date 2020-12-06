@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ price | localeNum }}円</p>
+    <p>180度は{{ 180 | radian | round }}ラジアンだよ</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        price: 19800,
+      },
+      filters: {
+        localeNum: function(val) {
+          return val.toLocaleString()
+        },
+        radian: function(val) {
+          // 度からラジアンに変換
+          return val * Math.PI / 180
+        },
+        round: function(val) {
+          // 小数点以下を第２位までにまとめる
+          return Math.round(val * 100) / 100
+        }
+      }
+    })
+  </script>
+</body>
+</html>
