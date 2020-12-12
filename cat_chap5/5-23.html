@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <my-component></my-component>
+    <my-component2></my-component2>
+
+    <comp-child val="これは子A"></comp-child>
+    <comp-child val="これは子B"></comp-child>
+
+    <comp-child val="classとidのテスト" id="parent" class="parent"></comp-child>
+  </div>
+  <script>
+    Vue.component('my-component', {
+      template: '<p>MyComponent</p>'
+    })
+
+    Vue.component('comp-child', {
+      // テンプレートで受け取ったvalを使用
+      template: '<p id="child" class="child">{{ val }}</p>',
+      // 受け取る属性名を指定
+      props: ['val']
+    })
+
+    var myComponent2 = {
+      template: '<p>MyComponent2</p>'
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'my-component2': myComponent2
+      }
+    })
+  </script>
+</body>
+</html>
