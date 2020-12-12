@@ -16,7 +16,16 @@
     <comp-child val="これは子B"></comp-child>
 
     <comp-child val="classとidのテスト" id="parent" class="parent"></comp-child>
+
+    <ul>
+      <item-list v-for="item in list"
+        v-bind:key="item.id"
+        v-bind:name="item.name"
+        v-bind:hp="item.hp"
+        ></item-list>
+    </ul>
   </div>
+
   <script>
     Vue.component('my-component', {
       template: '<p>MyComponent</p>'
@@ -29,6 +38,11 @@
       props: ['val']
     })
 
+    Vue.component('item-list', {
+      template: '<li>{{ name }} HP.{{ hp }}</li>',
+      props: ['name', 'hp']
+    })
+
     var myComponent2 = {
       template: '<p>MyComponent2</p>'
     }
@@ -37,6 +51,13 @@
       el: '#app',
       components: {
         'my-component2': myComponent2
+      },
+      data: {
+        list: [
+          { id: 1, name: 'スライム', hp: 100 },
+          { id: 2, name: 'ゴブリン', hp: 200 },
+          { id: 3, name: 'ドラゴン', hp: 500 },
+        ]
       }
     })
   </script>
