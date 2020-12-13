@@ -12,6 +12,16 @@
     <comp-child>
       フォールバックコンテンツ
     </comp-child>
+
+    <named-scope>
+      <template v-slot="header">
+        Hello, Vue.js!
+      </template>
+      Vue.jsはJavaScriptのフレームワークです。
+      <template v-slot="footer">
+        ここはフッターです
+      </template>
+    </named-scope>
   </div>
   <script>
     var compChild = {
@@ -22,6 +32,23 @@
           </div>
         </div>
       `
+    }
+
+    var namedScope = {
+      template: `
+        <div>
+          <section class="named-scope">
+            <header>
+              <slot name="header">デフォルトタイトル</slot>
+            </header>
+            <div class="content">
+              <slot>デフォルトコンテンツ</slot>
+            </header>
+            <slot name="footer">
+              <!-- なければ何も表示しない -->
+            </slot>
+          </seciton>
+        </div>`
     }
     new Vue({
       el: "#app",
