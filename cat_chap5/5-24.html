@@ -22,6 +22,14 @@
         ここはフッターです
       </template>
     </named-scope>
+
+    <!-- <text-prop>
+      <template v-slot:default="slotProps">
+        {{ slotProps.text }}
+      </template>
+    </text-prop> うまく動かない-->
+
+
   </div>
   <script>
     var compChild = {
@@ -50,6 +58,15 @@
           </seciton>
         </div>`
     }
+
+    // var textProp = {
+    //   template: `
+    //     <div class="comp-child">
+    //       <slot text="Hello!"></slot>
+    //     </div>
+    //   `
+    // } うまく動かない
+
     new Vue({
       el: "#app",
       components: {
