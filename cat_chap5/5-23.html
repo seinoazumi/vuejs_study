@@ -24,6 +24,14 @@
         v-bind:hp="item.hp"
         ></item-list>
     </ul>
+
+    <ul>
+      <child-attack v-for="item in list"
+        v-bind:key="item.id"
+        v-bind:name="item.name"
+        v-bind:hp="item.hp"
+        ></child-attack>
+    </ul>
   </div>
 
   <script>
@@ -46,6 +54,17 @@
     var myComponent2 = {
       template: '<p>MyComponent2</p>'
     }
+
+    Vue.component('child-attack', {
+      template: '<li>{{ name }} HP.{{ hp }}\
+                  <button v-on:click="doAttack">攻撃する</button></li>',
+      props: ['name', 'hp'],
+      methods: {
+        doAttack: function(){
+          this.hp -= 10
+        }
+      }
+    })
 
     new Vue({
       el: '#app',
