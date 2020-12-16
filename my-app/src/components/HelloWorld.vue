@@ -30,6 +30,12 @@
 </template>
 
 <script>
+import store from '@/store/index.js'
+// incrementをコミットする
+store.commit('increment')
+// カウントを出力してみる
+console.log(store.state.count)
+
 export default {
   name: 'HelloWorld',
   props: {
