@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <title>Document</title>
+  <style>
+    #app .v-enter-active, #app .v-leave-active {
+      transition: opacity 1s, transform 1s;
+    }
+
+    #app .v-enter {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    #app .v-v-leave-to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    #app2 .v-enter-active, #app2 .v-leave-active {
+      transition: opacity 1s;
+    }
+    #app2 .v-leave-active {
+      position: absolute;
+    }
+    #app2 .v-enter, #app2 .v-leave-to {
+      opacity: 0;
+}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="show=!show">切り替え</button>
+    <transition>
+      <div v-show="show">トランジッションさせたい要素</div>
+    </transition>
+  </div>
+
+  <div id="app2">
+    <p><button v-on:click="show=!show">切り替え</button></p>
+    <transition>
+      <div v-if="show" key="a">TRUE</div>
+      <div v-else key="b">FALSE</div>
+    </transition>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        show: true
+      }
+    })
+
+    new Vue({
+      el: '#app2',
+      data: {
+        show: true
+      }
+    })
+  </script>
+</body>
+</html>

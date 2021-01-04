@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  <title>Document</title>
+  <style>
+    .v-enter-active, .v-leave-active {
+    transition: opacity 1s;
+    }
+    .v-enter, .v-leave-to {
+      opacity: 0;
+    }
+
+    .border {
+      border: solid 3px #ccc;
+      padding: 20px 32px;
+      display: inline-block;
+      margin: 0 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="show=!show">切り替え</button>
+
+    <div class="btn-container">
+      <div class="border">
+        <h2>normal</h2>
+        <transition>
+          <div v-if="show" key="a">TRUE</div>
+          <div v-else key="b">FALSE</div>
+        </transition>
+      </div>
+
+      <div class="border">
+        <h2>out-in</h2>
+        <transition mode="out-in">
+          <div v-if="show" key="a">TRUE</div>
+          <div v-else key="b">FALSE</div>
+        </transition>
+      </div>
+
+      <div class="border">
+        <h2>in-out</h2>
+        <transition mode="in-out">
+          <div v-if="show" key="a">TRUE</div>
+          <div v-else key="b">FALSE</div>
+        </transition>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        show: true
+      }
+    })
+
+  </script>
+</body>
+</html>
